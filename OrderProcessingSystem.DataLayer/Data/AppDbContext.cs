@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderProcessingSystem.Entities;
+using OrderProcessingSystem.Entities.Models;
 
-namespace OrderProcessingSystem.DataLayer
+namespace OrderProcessingSystem.DataLayer.Data
 {
     public class AppDbContext : DbContext
     {
@@ -33,7 +33,7 @@ namespace OrderProcessingSystem.DataLayer
                 .HasMany(o => o.Products)
                 .WithMany(p => p.Orders)
                 .UsingEntity<Dictionary<string, object>>(
-                    "Order", 
+                    "Order",
                     j => j.HasOne<Product>().WithMany().HasForeignKey("ProductId"), // Foreign key to Product
                     j => j.HasOne<Order>().WithMany().HasForeignKey("OrderId") // Foreign key to Order
                 );

@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OrderProcessingSystem.Entities
+namespace OrderProcessingSystem.Entities.Models
 {
-    public class Product
+    public class Customer
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
-        public int ProductId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CustomerId { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public string Email { get; set; }
         public ICollection<Order> Orders { get; set; }
     }
 }
