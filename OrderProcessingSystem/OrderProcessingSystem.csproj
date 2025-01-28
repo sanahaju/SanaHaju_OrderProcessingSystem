@@ -24,4 +24,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OrderProcessingSystem.BusinessLayer\OrderProcessingSystem.BusinessLayer.csproj" />
+    <ProjectReference Include="..\OrderProcessingSystem.DataLayer\OrderProcessingSystem.DataLayer.csproj" />
+    <ProjectReference Include="..\OrderProcessingSystem.Entities\OrderProcessingSystem.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
