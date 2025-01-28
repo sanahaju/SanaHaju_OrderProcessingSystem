@@ -25,10 +25,7 @@ Follow these steps to set up the project locally:
 - Open the appsettings.json file.
 - Replace the default connection string with your actual connection string for the database.
 - Example for SQL Server:
-
-"ConnectionStrings": {
-  "DefaultConnection": "Server=your_server;Database=your_db;User Id=your_user;Password=your_password;"
-}
+- "ConnectionStrings": {"DefaultConnection": "Server=your_server;Database=your_db;User Id=your_user;Password=your_password;"}
 - Make sure to replace the placeholder values (your_server, your_db, your_user, your_password) with the actual details for your database.
 
 4. **Run the project:**
