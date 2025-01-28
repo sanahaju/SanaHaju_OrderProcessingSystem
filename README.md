@@ -16,15 +16,12 @@ Follow these steps to set up the project locally:
 ### Steps to Run the Project Locally
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/YourUsername/OrderProcessingSystem.git
+- git clone https://github.com/sanahaju/SanaHaju_OrderProcessingSystem.git
 
 2. **Navigate to the project directory:**
-  ```bash
-  cd OrderProcessingSystem
+- cd OrderProcessingSystem
 
 3. **Update the connection string:**
-
 - Open the appsettings.json file.
 - Replace the default connection string with your actual connection string for the database.
 - Example for SQL Server:
@@ -35,13 +32,12 @@ Follow these steps to set up the project locally:
 - Make sure to replace the placeholder values (your_server, your_db, your_user, your_password) with the actual details for your database.
 
 4. **Run the project:**
-dotnet run
-The API will be available at https://localhost:5001 (or a similar URL depending on your configuration).
+- dotnet run
+- The API will be available at https://localhost:5001 (or a similar URL depending on your configuration).
 
 5. **Running Tests:**
-To run the unit tests for this project, you can use the following command:
-dotnet test
-This will execute both the validation tests and functional tests defined in the OrderProcessingSystem.Tests project.
+- To run the unit tests for this project, you can use the following command: dotnet test
+- This will execute both the validation tests and functional tests defined in the OrderProcessingSystem.Tests project.
 
 #### Additional Notes for Reviewers
 - Testing: The project includes both functional tests and validation tests written in xUnit, covering key scenarios for the Order Processing API.
