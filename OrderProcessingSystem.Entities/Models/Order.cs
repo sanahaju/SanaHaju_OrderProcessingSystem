@@ -16,6 +16,8 @@ namespace OrderProcessingSystem.Entities.Models
 
         public DateTime OrderDate { get; set; }
 
+        public OrderStatus Status { get; set; }  
+
         public decimal TotalPrice
         {
             get
@@ -23,5 +25,12 @@ namespace OrderProcessingSystem.Entities.Models
                 return Products.Sum(product => product.Price);
             }
         }
+    }
+
+    public enum OrderStatus
+    {
+        Pending,
+        Fulfilled,
+        Canceled
     }
 }
