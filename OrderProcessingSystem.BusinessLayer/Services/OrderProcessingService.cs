@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Resource;
+using Microsoft.Extensions.Logging;
 using OrderProcessingSystem.BusinessLayer.Interfaces;
 using OrderProcessingSystem.DataLayer.Data;
 using OrderProcessingSystem.Entities.Models;
@@ -8,10 +9,12 @@ namespace OrderProcessingSystem.BusinessLayer.Services
     public class OrderProcessingService : IOrderProcessingService
     {
         private readonly IOrderProcessingRepository _orderProcessingRepository;
+        private readonly ILogger<OrderProcessingService> _logger;
 
-        public OrderProcessingService(IOrderProcessingRepository orderProcessingRepository)
+        public OrderProcessingService(IOrderProcessingRepository orderProcessingRepository, ILogger<OrderProcessingService> logger)
         {
             _orderProcessingRepository = orderProcessingRepository;
+            _logger = logger;
         }
 
         public async Task<Order> CreateOrderAsync(int customerId, List<int> productIds)

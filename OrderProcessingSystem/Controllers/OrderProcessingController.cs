@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderProcessingSystem.BusinessLayer.DTO;
 using OrderProcessingSystem.BusinessLayer.Interfaces;
 
 namespace OrderProcessingSystem.Controllers
@@ -8,12 +9,12 @@ namespace OrderProcessingSystem.Controllers
     [ApiController]
     public class OrderProcessingController : ControllerBase
     {
-        private readonly IOrderProcessingRepository _orderRepository;
+        private readonly IOrderProcessingService _orderService;
         private readonly ILogger<OrderProcessingController> _logger;
 
-        public OrderProcessingController(IOrderProcessingRepository orderRepository, ILogger<OrderProcessingController> logger)
+        public OrderProcessingController(IOrderProcessingService orderService, ILogger<OrderProcessingController> logger)
         {
-            _orderRepository = orderRepository;
+            _orderService = orderService;
             _logger = logger;
         }
 
@@ -22,7 +23,7 @@ namespace OrderProcessingSystem.Controllers
         {
             try
             {
-                var customers = await _orderRepository.GetAllCustomersAsync();
+                var customers = await _orderService.GetAllCustomersAsync();
                 if (customers == null || !customers.Any())
                 {
                     return NotFound("No customers found.");
@@ -46,7 +47,7 @@ namespace OrderProcessingSystem.Controllers
                     return BadRequest("Invalid customer ID.");
                 }
 
-                var customer = await _orderRepository.GetCustomerByIdAsync(id);
+                var customer = await _orderService.GetCustomerByIdAsync(id);
                 return Ok(customer);
             }
             catch (Exception ex)
@@ -57,22 +58,22 @@ namespace OrderProcessingSystem.Controllers
         }
 
         [HttpPost("orders")]
-        public async Task<IActionResult> CreateOrder([FromBody] int customerId, [FromBody] List<int> productIds)
+        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequestDTO request)
         {
             try
             {
-                if (customerId <= 0 || productIds == null || !productIds.Any())
+                if (request.CustomerId <= 0 || request.ProductIds == null || !request.ProductIds.Any())
                 {
                     return BadRequest("Invalid input: CustomerId and ProductIds are required.");
                 }
 
-                var order = await _orderRepository.CreateOrderAsync(customerId, productIds);
+                var order = await _orderService.CreateOrderAsync(request.CustomerId, request.ProductIds);
 
                 return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while creating order for CustomerId: {CustomerId}", customerId);
+                _logger.LogError(ex, "Error occurred while creating order for CustomerId: {CustomerId}", request.CustomerId);
                 return BadRequest(new { message = ex.Message });
             }
         }
@@ -87,7 +88,7 @@ namespace OrderProcessingSystem.Controllers
                     return BadRequest("Invalid order ID.");
                 }
 
-                var order = await _orderRepository.GetOrderByIdAsync(id);
+                var order = await _orderService.GetOrderByIdAsync(id);
                 if (order == null)
                 {
                     return NotFound("Order not found.");

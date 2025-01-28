@@ -9,9 +9,9 @@ namespace OrderProcessingSystem.BusinessLayer.Repository
     public class OrderProcessingRepository : IOrderProcessingRepository
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ILogger _logger;
+        private readonly ILogger<OrderProcessingRepository> _logger;
 
-        public OrderProcessingRepository(AppDbContext appDbContext, ILogger logger)
+        public OrderProcessingRepository(AppDbContext appDbContext, ILogger<OrderProcessingRepository> logger)
         {
             _appDbContext = appDbContext;
             _logger = logger;
