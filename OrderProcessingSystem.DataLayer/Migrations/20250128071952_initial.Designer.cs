@@ -12,7 +12,7 @@ using OrderProcessingSystem.DataLayer.Data;
 namespace OrderProcessingSystem.DataLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250128052211_initial")]
+    [Migration("20250128071952_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,9 @@ namespace OrderProcessingSystem.DataLayer.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("OrderId");
 

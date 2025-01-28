@@ -72,6 +72,9 @@ namespace OrderProcessingSystem.DataLayer.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId");
 
                     b.HasIndex("CustomerId");
